@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 196 100% 33%;
+    --foreground: 210 40% 98%;
+
+    --card: 228 9% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 228 9% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 100% 42%; /* Cyber blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5.9% 10%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 196 100% 42%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cyber-black text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono;
+  }
+
+  code {
+    @apply font-mono text-cyber-blue bg-cyber-dark rounded px-1;
+  }
+
+  pre {
+    @apply bg-cyber-dark rounded-md p-4 overflow-x-auto;
+  }
+}
+
+@layer components {
+  .markdown-content {
+    @apply prose prose-invert max-w-none;
+  }
+
+  .markdown-content h1 {
+    @apply text-cyber-blue;
+  }
+
+  .markdown-content h2, .markdown-content h3 {
+    @apply text-cyber-blue;
+  }
+
+  .markdown-content a {
+    @apply text-cyber-blue underline hover:text-cyber-blue transition-colors;
+  }
+
+  .markdown-content blockquote {
+    @apply border-l-4 border-cyber-blue bg-cyber-dark pl-4 py-1 my-4;
+  }
+
+  .graph-node {
+    @apply cursor-pointer;
+  }
+
+  .graph-link {
+    @apply opacity-30 hover:opacity-100 transition-opacity;
+  }
+
+}
+.slider-thumb-cyber::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}
+.slider-thumb-cyber::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}
+.slider-thumb-cyber::-ms-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}
+.custom-slider-thumb::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}
+.custom-slider-thumb::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}
+.custom-slider-thumb::-ms-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00b4d8;
+  border: 2px solid #0077a6;
+  box-shadow: 0 0 0 2px #0077a6;
+  cursor: pointer;
+}

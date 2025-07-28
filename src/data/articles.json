@@ -1,0 +1,216 @@
+[
+  {
+    "slug": "Cloud Security Due Diligence",
+    "title": "Cloud Security in 2025 Coffee‑Fueled Reality Checks",
+    "shortTitle": "Cloud Security in 2025...",
+    "category": "red-team",
+    "tags": [
+      "#CloudSecurity"
+    ],
+    "date": "05/15/2025",
+    "excerpt": "In the race to ship features, teams now spin up containers, serverless functions and AI pipelines with the same casual energy used to open browser tabs.",
+    "connections": [
+      "S3 Buckets"
+    ],
+    "content": "## The Cloud Grew Tentacles—You Probably Deployed Half of Them\n\nIn the race to ship features, teams now spin up containers, serverless functions and AI pipelines with the same casual energy used to open browser tabs. That ease hides a thorny truth: one sloppy variable in a CI script can birth hundreds of publicly reachable endpoints before the first stand‑up of the day. Modern cloud estates feel less like crisp architecture diagrams and more like ever‑expanding coral reefs—beautiful, useful, but riddled with crevices attackers adore.\n\n## Old Protocols Never Die, They Just Turn Into Headlines\n\nLast year’s surprise OpenSSH race condition (CVE‑2024‑6387) reminded everyone that a two‑decade‑old daemon can still cough up root shells if you leave port 22 exposed with default timeouts. It wasn’t exotic research; just a reminder that critical infrastructure often runs boring software westerns have long stopped watching. Disabling password auth, tightening firewall rules, or—brace yourself—shutting off public SSH entirely turns that horror movie into a yawn.\n\n## Patch Tuesdays, Thursdays, and Probably Saturdays\n\nVendor cadence feels frantic. Microsoft dropped a perfect‑ten privilege‑escalation bug in Azure DevOps Server this May, patching the cloud‑hosted version automatically while on‑prem installations waited for admins to pour coffee, read release notes, and click “update.” The lesson hits hard: “managed” services inherit your risk profile the moment you yank them inside your data center or pin them to an old VM image.\n\n## Misconfigurations: The Eternal Hero of Breach Reports\n\nA graduate student armed with a free scanner can still unearth S3 buckets brimming with production logs. Why? Because default policies remain lenient, teams copy‑paste IaC snippets from four‑year‑old gists, and nobody runs `terraform validate` in the heat of an urgent deploy. Cloud providers keep adding guardrails—VPC‑only access conditions, block‑public‑policy flags—but they can’t override that late‑night “quick fix” PR approved with half an emoji.\n\n## Identity Became the Dataplane\n\nZero trust went from conference bingo word to everyday plumbing. Instead of firewalls, teams now juggle workload identities that sign JWTs to each other, mutual TLS that rotates every few hours, and just‑in‑time role assumption for humans. When an anomalous token emerges—say, a build agent suddenly requesting production secrets at 3 a.m.—machine‑learning watchdogs shriek before Slack even registers the timestamp. It’s noisy, yet infinitely better than sifting through rolled‑up VPC flow logs after a breach.\n\n## Tiny Terraform Snippet, Big Sleep Upgrade\n\nConsider locking an object store to your private network by default. A one‑page policy that denies every request lacking your VPC identifier forces developers to justify exceptions in code reviews instead of patching things at midnight. Guardrails don’t prevent velocity; they stop despair.\n\n```\nresource \"aws_s3_bucket_policy\" \"vpc_only\" {\n  bucket = aws_s3_bucket.media.id\n  policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Sid       = \"DenyOutsideVPC\"\n        Effect    = \"Deny\"\n        Principal = \"*\"\n        Action    = \"s3:*\"\n        Resource  = [\n          \"${aws_s3_bucket.media.arn}\",\n          \"${aws_s3_bucket.media.arn}/*\"\n        ]\n        Condition = {\n          StringNotEquals = {\n            \"aws:SourceVpc\" = var.vpc_id\n          }\n        }\n      }\n    ]\n  })\n}\n\n```\n\n## Daily Drills Over Grand Strategies\n\nChaos‑engineering‑style fire drills reveal whether incident channels light up within seconds or if everyone waits for a pager that never buzzes. Rotating credentials weekly might sound excessive until you watch a sandbox token leapfrog into staging, then production, thanks to over‑broad IAM trust. Frequent, noisy practice keeps the reflexes sharp and the blast radius tight.\n\n## No Grand Finale Here\n\nPatch quickly, script the boring defenses, assume breach, instrument aggressively, and keep shipping."
+  },
+  {
+    "slug": "Cloud Security",
+    "title": "Cloud Security",
+    "shortTitle": "Cloud Security",
+    "category": "defense",
+    "tags": [
+      "cloud",
+      "security",
+      "defense"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Cloud Security\n\nCloud security encompasses the technologies, policies, and controls that protect cloud-based systems, data, and infrastructure from threats.\n...",
+    "connections": [
+      "security-architecture"
+    ],
+    "content": "\n# Cloud Security\n\nCloud security encompasses the technologies, policies, and controls that protect cloud-based systems, data, and infrastructure from threats.\n"
+  },
+  {
+    "slug": "Cryptography",
+    "title": "Cryptography",
+    "shortTitle": "Cryptography",
+    "category": "fundamentals",
+    "tags": [
+      "encryption",
+      "security",
+      "basics"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Cryptography\n\nCryptography is the science of securing information by transforming it into an unreadable format, only accessible to those possessing a secret key. It is fundamental to modern cyberse...",
+    "connections": [
+      "network-security",
+      "web-security",
+      "security-architecture"
+    ],
+    "content": "\n# Cryptography\n\nCryptography is the science of securing information by transforming it into an unreadable format, only accessible to those possessing a secret key. It is fundamental to modern cybersecurity.\n"
+  },
+  {
+    "slug": "Digital Forensics",
+    "title": "Digital Forensics",
+    "shortTitle": "Digital Forensics",
+    "category": "defense",
+    "tags": [
+      "forensics",
+      "digital",
+      "defense"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Digital Forensics\n\nDigital forensics involves the recovery and investigation of material found in digital devices, often in relation to computer crime.\n...",
+    "connections": [
+      "malware-analysis"
+    ],
+    "content": "\n# Digital Forensics\n\nDigital forensics involves the recovery and investigation of material found in digital devices, often in relation to computer crime.\n"
+  },
+  {
+    "slug": "Malware Analysis",
+    "title": "Malware Analysis",
+    "shortTitle": "Malware Analysis",
+    "category": "defense",
+    "tags": [
+      "malware",
+      "analysis",
+      "defense"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Malware Analysis\n\nMalware analysis is the process of studying malicious software to understand its behavior, origin, and impact. It is essential for developing effective defenses.\n...",
+    "connections": [
+      "social-engineering",
+      "digital-forensics"
+    ],
+    "content": "\n# Malware Analysis\n\nMalware analysis is the process of studying malicious software to understand its behavior, origin, and impact. It is essential for developing effective defenses.\n"
+  },
+  {
+    "slug": "Network Security",
+    "title": "Network Security",
+    "shortTitle": "Network Security",
+    "category": "fundamentals",
+    "tags": [
+      "network",
+      "security",
+      "basics"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Network Security\n\nNetwork security covers the policies, practices, and technologies used to protect the integrity, confidentiality, and availability of computer networks and data. Topics include fi...",
+    "connections": [
+      "cryptography",
+      "web-security",
+      "penetration-testing",
+      "security-architecture"
+    ],
+    "content": "\n# Network Security\n\nNetwork security covers the policies, practices, and technologies used to protect the integrity, confidentiality, and availability of computer networks and data. Topics include firewalls, intrusion detection, VPNs, and more.\n"
+  },
+  {
+    "slug": "Penetration Testing",
+    "title": "Penetration Testing",
+    "shortTitle": "Penetration Testing",
+    "category": "attacks",
+    "tags": [
+      "pentest",
+      "attacks",
+      "security"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Penetration Testing\n\nPenetration testing simulates cyberattacks to identify vulnerabilities in systems, networks, or applications before attackers can exploit them.\n...",
+    "connections": [
+      "network-security",
+      "web-security"
+    ],
+    "content": "\n# Penetration Testing\n\nPenetration testing simulates cyberattacks to identify vulnerabilities in systems, networks, or applications before attackers can exploit them.\n"
+  },
+  {
+    "slug": "S3 Buckets",
+    "title": "Locking Down Your S3 Buckets Without Losing Your Mind",
+    "shortTitle": "Locking Down Your S3...",
+    "category": "blue-team",
+    "tags": [
+      "#CloudSecurity"
+    ],
+    "date": "05/15/2025",
+    "excerpt": "Amazon S3 is the kind of service you spin up in an afternoon—then spend the next year tightening the screws after you read one of those “massive data leak” headlines.",
+    "connections": [
+      "Cloud Security Due Diligence"
+    ],
+    "content": "# Because nothing says “oops” like a world‑readable bucket.\n\nAmazon S3 is the kind of service you spin up in an afternoon—then spend the next year tightening the screws after you read one of those “massive data leak” headlines. Buckets look deceptively simple: drop files in, grab them out. Behind the scenes you’re dealing with a global object store, a handful of overlapping permission models, and a fast‑moving security feature set that keeps growing each re:Invent. The good news is that you can lock things down without becoming a full‑time cloud plumber. Let’s walk through the bits that matter and the pitfalls that bite.\n\n---\n\n## The Public Bucket Problem, Revisited\n\nMost horror stories start with an **overly friendly bucket policy or ACL**. In the early days you could tick a single “read for everyone” box in the console and—bam—your wedding photos, API keys, and customer archives got equal airtime. Amazon’s newer **Block Public Access** setting is basically a master kill‑switch. Flip it on at the account level, and S3 ignores any policy, ACL, or role trying to open the bucket to the world.  \n\nIf you inherited an older account, run this once and breathe:\n\n```bash\naws s3control put-public-access-block   --account-id 123456789012   --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true\n```\n\nIt still pays to check existing buckets with **Access Analyzer for S3**. Analyzer crawls policies and ACLs then flags anything that might leak beyond the account boundary. Treat the warnings like smoke alarms—ignore one and the fire spreads fast.\n\n---\n\n## Death of the ACL (Almost)\n\nAmazon would love everyone to ditch legacy ACLs and switch to modern **Object Ownership** set to “Bucket owner enforced.” Once enabled, ACLs are flat‑out disabled—no more per‑object ACL fun, no more guessing who owns a file. Everything is controlled by IAM policies and bucket policies:\n\n```bash\naws s3api put-bucket-ownership-controls   --bucket prod-data   --ownership-controls Rules=[{ObjectOwnership=BucketOwnerEnforced}]\n```\n\nIf you’re still sharing buckets with external vendors, move them to their own bucket and wire up a resource policy that grants **least‑privilege** IAM access instead. Cross‑account ACLs are a shortcut every attacker knows how to abuse.\n\n---\n\n## Encryption Isn’t Optional Anymore\n\nAWS quietly turned on server‑side encryption by default in 2023, but you have choices and they matter.\n\n* **SSE‑S3**: Amazon’s managed keys, no extra charge. Great for dev buckets and throwaway data.\n* **SSE‑KMS**: You control the key in AWS KMS. Lets you rotate keys, add key policies, and log every decrypt. A must for anything remotely sensitive.\n* **DSSE‑S3**: Dual‑layer encryption that wraps objects twice with distinct keys. It’s new and a bit pricier, aimed at compliance regimes that require “separation of duties.”\n\nEnforce the algorithm you want with a bucket policy guardrail:\n\n```json\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"DenyUnencryptedPayloads\",\n      \"Effect\": \"Deny\",\n      \"Principal\": \"*\",\n      \"Action\": \"s3:PutObject\",\n      \"Resource\": \"arn:aws:s3:::prod-data/*\",\n      \"Condition\": {\n        \"StringNotEquals\": {\n          \"s3:x-amz-server-side-encryption\": \"aws:kms\"\n        }\n      }\n    }\n  ]\n}\n```\n\n---\n\n## Logging: If It’s Not Logged, It Didn’t Happen\n\nTwo switches matter more than the rest:\n\n1. **CloudTrail Data Events for S3** record every single object‑level API call—gets, puts, deletes, the works. They’re chatty but gold when you need to answer, “Who downloaded our entire backup at 3 a.m.?”\n2. **Server Access Logs** drop Apache‑style entries into a sibling bucket. They’re cheap, but parsing them in 2025 without Athena feels medieval. Point Athena or Amazon OpenSearch at the log bucket, build a dashboard, and forget about the raw files.\n\nCouple those with **Amazon GuardDuty Malware Protection for S3** so that every new object gets a lightweight scan. It’s pay‑per‑byte and won’t catch everything, but it stops the classic ransomware payload from slipping in unnoticed.\n\n---\n\n## IAM: Roles Over Users, Policies Over Chaos\n\nCreate one role per workload, attach a narrow policy, and rotate keys via **IAM roles for service accounts** if you’re on EKS or ECS. Don’t let developers embed long‑lived access keys in CI/CD variables. If you need temporary credentials, **AWS STS with AssumeRole** is the pattern.\n\nRemember that policies stack: a deny in any policy wins over an allow. Use that to your advantage. Create a top‑level **Service Control Policy** in AWS Organizations that denies `s3:PutBucketPublic*` and `s3:DeleteBucket` in production accounts. Even root can’t override an SCP.\n\n---\n\n## MFA Delete: The Forgotten Lifeline\n\nEnable **MFA Delete** on buckets holding irreplaceable data. It forces multi‑factor auth for version deletion and permanent object removal. You can’t enable it from the console; brew some coffee and do it via the root account and `PutBucketVersioning`. Yes, it adds friction. That’s the point.\n\n---\n\n## Versioning + Replication: Backup Without Backup Software\n\nTurn on **Versioning** so every overwrite becomes a historical object. Then turn on **Cross‑Region Replication** to a second AWS region with its own KMS key. If an attacker nukes `us-east-1`, you still have copies in `eu-central-1`. Combine replication with **Object Lock in Compliance mode** for buckets storing audit trails; Object Lock prevents deletes for a time window you set, satisfying a pile of regulatory checkboxes without third‑party tooling.\n\n---\n\n## Continuous Scanning Beats Annual Audits\n\nStatic policies age like milk. Wire up:\n\n* **AWS Config Rules** such as `s3-bucket-public-read-prohibited`.\n* An **EventBridge** rule to page you when Config drifts.\n* A nightly **AWS Lambda** that cross‑checks bucket tags, verifying encryption, versioning, and logging flags.  \n\nThat loop—scan, alert, remediate—keeps your security posture current even when product teams are shipping changes at 2 a.m.\n\n---\n\n## Parting Thoughts\n\nS3 offers enough switches to turn the simplest object store into a fortress, but the interface still lets you hang yourself with three mouse clicks. Start by blocking public access, forcing encryption, and logging everything, then layer in IAM rigor, versioning, and continuous monitoring. Treat buckets like production databases instead of file shares and you’ll dodge the breach headlines others keep generating.\n"
+  },
+  {
+    "slug": "Secure Coding",
+    "title": "Secure Coding",
+    "shortTitle": "Secure Coding",
+    "category": "defense",
+    "tags": [
+      "secure",
+      "coding",
+      "defense"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Secure Coding\n\nSecure coding is the practice of writing software that is resistant to vulnerabilities and attacks. It includes input validation, error handling, and secure design principles.\n...",
+    "connections": [
+      "web-security"
+    ],
+    "content": "\n# Secure Coding\n\nSecure coding is the practice of writing software that is resistant to vulnerabilities and attacks. It includes input validation, error handling, and secure design principles.\n"
+  },
+  {
+    "slug": "Security Architecture",
+    "title": "Security Architecture",
+    "shortTitle": "Security Architecture",
+    "category": "fundamentals",
+    "tags": [
+      "architecture",
+      "security",
+      "fundamentals"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Security Architecture\n\nSecurity architecture is the design and structure of security controls and policies within an organization. It ensures that security is integrated into all aspects of IT infr...",
+    "connections": [
+      "network-security",
+      "cryptography",
+      "cloud-security"
+    ],
+    "content": "\n# Security Architecture\n\nSecurity architecture is the design and structure of security controls and policies within an organization. It ensures that security is integrated into all aspects of IT infrastructure.\n"
+  },
+  {
+    "slug": "Social Engineering",
+    "title": "Social Engineering",
+    "shortTitle": "Social Engineering",
+    "category": "attacks",
+    "tags": [
+      "social",
+      "engineering",
+      "attacks"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Social Engineering\n\nSocial engineering exploits human psychology to gain access to systems or data. Common techniques include phishing, pretexting, and baiting.\n...",
+    "connections": [
+      "web-security",
+      "malware-analysis"
+    ],
+    "content": "\n# Social Engineering\n\nSocial engineering exploits human psychology to gain access to systems or data. Common techniques include phishing, pretexting, and baiting.\n"
+  },
+  {
+    "slug": "Web Security",
+    "title": "Web Security",
+    "shortTitle": "Web Security",
+    "category": "attacks",
+    "tags": [
+      "web",
+      "security",
+      "attacks"
+    ],
+    "date": "2025-05-18T00:00:00.000Z",
+    "excerpt": "\n# Web Security\n\nWeb security focuses on protecting websites and web applications from attacks such as XSS, CSRF, and SQL injection. It is a critical area in the modern threat landscape.\n...",
+    "connections": [
+      "network-security",
+      "cryptography",
+      "social-engineering",
+      "penetration-testing",
+      "secure-coding"
+    ],
+    "content": "\n# Web Security\n\nWeb security focuses on protecting websites and web applications from attacks such as XSS, CSRF, and SQL injection. It is a critical area in the modern threat landscape.\n"
+  }
+]
