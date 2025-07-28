@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
-  console.log('Index page rendered'); // Debug: confirm component is mounting
+  // console.log('Index page rendered');
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const navigate = useNavigate();
